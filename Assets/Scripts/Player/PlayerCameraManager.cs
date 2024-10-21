@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCameraManager : PlayerInputReciever
+public class PlayerCameraManager : InputReviever
 {
     [SerializeField] private Camera _camera;
     [SerializeField][Range(-90, 0)] private float _minCameraPitch;

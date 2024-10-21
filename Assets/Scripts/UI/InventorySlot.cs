@@ -5,21 +5,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class HotbarSlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour
 {
     [SerializeField] private Image _backgroundImage;
     [SerializeField] private Color _highlightColor;
     [SerializeField] private Color _defaultColor;
     [SerializeField] private Image _iconImage;
     [SerializeField] private TMP_Text _nameTag;
-    [SerializeField] private InventoryItem itemData;
+    [SerializeField] private InventoryItem _itemData;
 
     private InventoryConstants _inventoryConstants;
 
     [Inject]
-    private void Initialise(InventoryConstants inventoryConstants)
+    private void Initialise([InjectOptional]InventoryItem data, InventoryConstants inventoryConstants)
     {
         _inventoryConstants = inventoryConstants;
+
+        if(data != null)
+        {
+            _itemData = data;
+        }
     }
 
     private void OnEnable()
@@ -54,13 +59,13 @@ public class HotbarSlot : MonoBehaviour
         Sprite newIcon = null;
         
 
-        if (itemData == null) // no item in slot
+        if (_itemData == null) // no item in slot
         {
             newIcon = _inventoryConstants.GetEmptyInventoryItemIcon();
         }
         else // get icon from item data
         {
-            newIcon = itemData.GetIcon();
+            newIcon = _itemData.GetIcon();
         }
         
         // set srpite to newIcon. If null, fallback to default icon
@@ -71,15 +76,24 @@ public class HotbarSlot : MonoBehaviour
 
     private void UpdateNameTag()
     {
+        if (_nameTag == null) return;
+
         string newName = null;
 
-        if(itemData != null)
+        if(_itemData != null)
         {
-            newName = itemData.GetName();
+            newName = _itemData.GetName();
 
             if (string.IsNullOrEmpty(newName)) newName = _inventoryConstants.GetDefaultItemName();
         }
 
         _nameTag.text = newName;
     }
+
+    public void Destroy()
+    {
+        Destroy(gameObject);
+    }
+
+    public class Factory : PlaceholderFactory<InventoryItem, InventorySlot> { };
 }

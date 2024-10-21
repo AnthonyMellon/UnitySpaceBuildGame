@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3420480507122964359}
   m_RootOrder: 1
@@ -95,8 +96,7 @@ GameObject:
   - component: {fileID: 3078495364362035587}
   - component: {fileID: 8599201696530025974}
   - component: {fileID: 6959950112217481380}
-  - component: {fileID: 3629095397320931574}
-  - component: {fileID: 2463116654359600503}
+  - component: {fileID: 2081752322533758822}
   - component: {fileID: 3984120602424647472}
   m_Layer: 0
   m_Name: Player
@@ -115,6 +115,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3543735347167642197}
   - {fileID: 7673647151864526270}
@@ -134,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a101f7652f948e84e8c707c91995e774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 3629095397320931574}
   _rb: {fileID: 3984120602424647472}
   _jumpForce: 150
   _walkSpeed: 10
@@ -152,7 +152,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 294cadf5b2ba57f41bf94e68a62025df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 3629095397320931574}
   _hotbar: {fileID: 7800546107791301587}
 --- !u!114 &6959950112217481380
 MonoBehaviour:
@@ -166,12 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183bdff8b56e3ac418b7fd10c764a337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 3629095397320931574}
   _camera: {fileID: 343698925805553770}
   _minCameraPitch: -67.5
   _maxCameraPitch: 67.5
   _pitchSpeed: 0.1
---- !u!114 &3629095397320931574
+--- !u!114 &2081752322533758822
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,135 +178,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3420480507122964358}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4090ba36f717b6649bd5cb51b6b3b8cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 636fa05e59f4ed5498484d5c382934d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2463116654359600503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3420480507122964358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 724103944784b2b4e9cdbce868a04aec, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3629095397320931574}
-        m_TargetAssemblyTypeName: PlayerInputManager, Assembly-CSharp
-        m_MethodName: ChangeDirection
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 48c4c537-b8b9-4369-8bf5-2c768725a2c8
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3629095397320931574}
-        m_TargetAssemblyTypeName: PlayerInputTranslater, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cbf2bce1-03f3-417c-9c67-80dc81b66904
-    m_ActionName: Player/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3629095397320931574}
-        m_TargetAssemblyTypeName: PlayerInputTranslater, Assembly-CSharp
-        m_MethodName: Scroll
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8c1eb5ad-b1ed-4e7c-bc42-747764bb13fd
-    m_ActionName: Player/Scroll[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3629095397320931574}
-        m_TargetAssemblyTypeName: PlayerInputTranslater, Assembly-CSharp
-        m_MethodName: Number
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ceb683a9-c1b0-4a86-a874-a20bd1a937c4
-    m_ActionName: Player/Number[/Keyboard/1,/Keyboard/2,/Keyboard/3,/Keyboard/4,/Keyboard/5,/Keyboard/6,/Keyboard/7,/Keyboard/8,/Keyboard/9,/Keyboard/0]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3629095397320931574}
-        m_TargetAssemblyTypeName: PlayerInputTranslater, Assembly-CSharp
-        m_MethodName: MouseMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a2448351-76f4-440e-8105-31d91acb830c
-    m_ActionName: Player/Look[/Mouse/delta]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3629095397320931574}
-        m_TargetAssemblyTypeName: PlayerInputTranslater, Assembly-CSharp
-        m_MethodName: Spint
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: ccebe82c-b6e2-40ed-992b-c7659f0d0af0
-    m_ActionName: Player/Sprint[/Keyboard/leftShift]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!54 &3984120602424647472
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -354,6 +226,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3420480507122964359}
   m_RootOrder: 0
@@ -377,6 +250,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

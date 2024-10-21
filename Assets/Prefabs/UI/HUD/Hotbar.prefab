@@ -27,6 +27,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4470187256900026282}
   - {fileID: 8349661057224333996}
@@ -99,6 +100,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6730989542419088779}
   m_Father: {fileID: 0}
@@ -245,6 +247,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
       propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 67ef147371f286345b86a68092eebd25, type: 2}
+    - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
+      propertyPath: _itemData
       value: 
       objectReference: {fileID: 11400000, guid: 67ef147371f286345b86a68092eebd25, type: 2}
     - target: {fileID: 8865861126528010426, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
@@ -457,6 +463,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
       propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5df159c3a31437a4abac3ef0f88126c5, type: 2}
+    - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
+      propertyPath: _itemData
       value: 
       objectReference: {fileID: 11400000, guid: 5df159c3a31437a4abac3ef0f88126c5, type: 2}
     - target: {fileID: 8865861126528010426, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
@@ -777,6 +787,10 @@ PrefabInstance:
       propertyPath: itemData
       value: 
       objectReference: {fileID: 11400000, guid: 54695eb1661e4d640b2805bfeaa859e6, type: 2}
+    - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
+      propertyPath: _itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 54695eb1661e4d640b2805bfeaa859e6, type: 2}
     - target: {fileID: 8865861126528010426, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -987,6 +1001,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
       propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 739ee273a2b5e1a49ad2a6ff90fe5121, type: 2}
+    - target: {fileID: 1559023180659105284, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}
+      propertyPath: _itemData
       value: 
       objectReference: {fileID: 11400000, guid: 739ee273a2b5e1a49ad2a6ff90fe5121, type: 2}
     - target: {fileID: 8865861126528010426, guid: feba49a20288f074d853d2bdd562bfb0, type: 3}

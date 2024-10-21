@@ -5,8 +5,10 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 
-public class PlayerInputTranslater : MonoBehaviour
+public class Manager_InputManager : MonoBehaviour
 {
+    [SerializeField] private PlayerInput _pInput;
+
     #region Event Decleration
     public delegate void ChangeDirectionHandler (Vector3 direction);
     public event ChangeDirectionHandler OnChangeDirection;
@@ -28,10 +30,15 @@ public class PlayerInputTranslater : MonoBehaviour
 
     public delegate void SprintToggleHandler(bool toggle);
     public event SprintToggleHandler OnSprintToggle;
+
+    public delegate void OpenBuildMenuHandler();
+    public event OpenBuildMenuHandler OnOpenBuildMenu;
+
+    public delegate void CloseMenuHandler();
+    public event CloseMenuHandler OnCloseMenu;
     #endregion
 
-    public Vector2 MovementDirection { get; private set; }
-
+    #region Player
     public void ChangeDirection(InputAction.CallbackContext context)
     {
         Vector2 direction = context.ReadValue<Vector2>();
@@ -84,5 +91,30 @@ public class PlayerInputTranslater : MonoBehaviour
     {
         bool toggle = context.ReadValueAsButton();
         OnSprintToggle?.Invoke(toggle);
+    }
+
+    public void OpenBuildMenu(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            OnOpenBuildMenu?.Invoke();
+        }
+    }
+    #endregion
+
+    #region Menus
+
+    public void CloseMenu(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Started)
+        {
+            OnCloseMenu.Invoke();
+        }
+    }
+    #endregion
+
+    public void SwitchInput(string InputName) //swap this to a callback?
+    {
+        _pInput.SwitchCurrentActionMap(InputName);
     }
 }

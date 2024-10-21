@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class PlayerInventoryManager : PlayerInputReciever
+public class PlayerInventoryManager : InputReviever
 {
-    [SerializeField] private Hotbar _hotbar;    
+    [SerializeField] private Hotbar _hotbar;
 
     #region Event Subscription
     protected override void ListenForInput()

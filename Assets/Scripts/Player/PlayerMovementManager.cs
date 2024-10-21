@@ -5,7 +5,7 @@ using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementManager : PlayerInputReciever
+public class PlayerMovementManager : InputReviever
 {
     [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _jumpForce;

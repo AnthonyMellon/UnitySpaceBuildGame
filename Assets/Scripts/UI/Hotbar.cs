@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hotbar : MonoBehaviour
 {
     [SerializeField] private GameObject _slotsContainer;
-    private List<HotbarSlot> _slots;
+    private List<InventorySlot> _slots;
     private int _selectedSlotIndex = 0;
 
     private void OnEnable()
@@ -19,7 +19,7 @@ public class Hotbar : MonoBehaviour
     private void GetAllSlots()
     {
         _slots?.Clear();
-        _slots = _slotsContainer.GetComponentsInChildren<HotbarSlot>().ToList();
+        _slots = _slotsContainer.GetComponentsInChildren<InventorySlot>().ToList();
     }
 
     /// <summary>

@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1110842862839297379}
   m_RootOrder: 1
@@ -162,6 +163,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 935041759055708332}
   - {fileID: 1831540071405768035}
@@ -239,6 +241,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1110842862839297379}
   m_RootOrder: 0
@@ -316,6 +319,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1110842862839297379}
   m_Father: {fileID: 0}
@@ -393,12 +397,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8865861126528010427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a9a767ad252094e8d19aa4fcde999f, type: 3}
+  m_Script: {fileID: 11500000, guid: baaa3aa772995b144ac3a119210da87b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _backgroundImage: {fileID: 7379489296091266217}
-  _highlightColor: {r: 0, g: 1, b: 1, a: 1}
-  _defaultColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+  _highlightColor: {r: 0, g: 1, b: 1, a: 0.7490196}
+  _defaultColor: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 0.5019608}
   _iconImage: {fileID: 3196375022449459810}
   _nameTag: {fileID: 3440593928241201843}
   itemData: {fileID: 0}
