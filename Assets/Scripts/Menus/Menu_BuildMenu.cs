@@ -23,27 +23,31 @@ public class Menu_BuildMenu : Menu_MenuBase
 
     protected override void OpenMenu()
     {
-        Debug.Log("Open");
-        CreateSlots();
+        CreateSlotsFor(_menuItems);
     }
 
     protected override void CloseMenu()
     {
-        Debug.Log("Close");
         DestroySlots();
     }
 
-    private void CreateSlots()
+    /// <summary>
+    /// Create all slots needed to display <paramref name="inventoryItems"/>
+    /// </summary>
+    /// <param name="inventoryItems">The items to be displayed</param>
+    private void CreateSlotsFor(List<InventoryItem> inventoryItems)
     {
-        for(int i = 0; i < _menuItems.Count; i++)
+        for(int i = 0; i < inventoryItems.Count; i++)
         {
-            InventorySlot slot = _inventorySlotFactory.Create(_menuItems[i]);
+            InventorySlot slot = _inventorySlotFactory.Create(inventoryItems[i]);
             slot.transform.SetParent(_slotContainer, false);
             _slots.Add(slot);
-
         }
     }
 
+    /// <summary>
+    /// Destroy all slots
+    /// </summary>
     private void DestroySlots()
     {
         for(int i = 0; i <  _slots.Count; i++)

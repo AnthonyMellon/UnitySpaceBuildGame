@@ -1,9 +1,5 @@
-using ModestTree.Util;
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,25 +8,35 @@ public class Manager_SceneManager : MonoBehaviour
     /// <summary>
     /// Attempts to load a given scene
     /// </summary>
-    /// <param name="sceneName">The name of the scene to load</param>
-    /// <returns>True if the scene gets loaded. False if the scene is already loaded</returns>
+    /// <param name="scene">The scene to load</param>
+    /// <param name="onLoadComplete">The action to be called once the scene is laoded</param>
+    /// <returns></returns>
     public void LoadScene(SceneConstants.Scenes scene, Action<Scene> onLoadComplete)
     {
         string sceneName = SceneConstants.SceneNames[scene];
         Scene loadedScene;
 
-        //Scene already loaded?
+        //Check if the scene is already loaded. If it is then loading is complete
         loadedScene = SceneManager.GetSceneByName(sceneName);
         if (loadedScene.name != null)
         {
             onLoadComplete(loadedScene);
-            return;
+        }
+        else
+        {
+            //Start loading the scene
+            StartCoroutine(LoadSceneEnum(sceneName, onLoadComplete));
         }
 
-        //Load scene        
-        StartCoroutine(LoadSceneEnum(sceneName, onLoadComplete));
+
     }
 
+    /// <summary>
+    /// Load a given scene in the background
+    /// </summary>
+    /// <param name="sceneName">The scene to be loaded</param>
+    /// <param name="onLoadComplete">Acion to be called once the scene is loaded</param>
+    /// <returns></returns>
     private IEnumerator LoadSceneEnum(string sceneName, Action<Scene> onLoadComplete)
     {
         //Begin scene load
@@ -52,6 +58,10 @@ public class Manager_SceneManager : MonoBehaviour
         onLoadComplete.Invoke(loadedScene);
     }
 
+    /// <summary>
+    /// Unload a given scene
+    /// </summary>
+    /// <param name="scene">The scene to unload</param>
     public void UnloadScene(SceneConstants.Scenes scene)
     {
         string sceneName = SceneConstants.SceneNames[scene];

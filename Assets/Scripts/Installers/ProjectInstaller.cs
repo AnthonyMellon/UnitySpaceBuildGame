@@ -15,10 +15,6 @@ public class ProjectInstaller : MonoInstaller
     [SerializeField] private Manager_MenuManager _menuManager;
     [SerializeField] private Manager_InputManager _inputManager;
 
-/*    //Menus
-    [Header("Menus")]
-    [SerializeField] private Menu_BuildMenu _buildMenu;*/
-
     public override void InstallBindings()
     {
         //Constants
@@ -28,9 +24,6 @@ public class ProjectInstaller : MonoInstaller
         Container.Bind<Manager_SceneManager>().FromComponentInNewPrefab(_sceneManager).AsSingle();
         Container.Bind<Manager_MenuManager>().FromComponentInNewPrefab(_menuManager).AsSingle();
         Container.Bind<Manager_InputManager>().FromComponentInNewPrefab(_inputManager).AsSingle();
-
-        //Menus
-        //Container.Bind<Menu_BuildMenu>().FromComponentInNewPrefab(_buildMenu).AsSingle();
 
         //Factories
         Container.BindFactory<InventoryItem, InventorySlot, InventorySlot.Factory>().FromComponentInNewPrefab(_buildMenuSlot).AsSingle();

@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Windows;
 using Zenject;
 
 public abstract class InputReviever : MonoBehaviour
@@ -26,7 +21,14 @@ public abstract class InputReviever : MonoBehaviour
         UnlistenForInput();
     }
 
+    /// <summary>
+    /// Subsribe to input events
+    /// </summary>
     protected abstract void ListenForInput();
+
+    /// <summary>
+    /// Unsubscribe from input events
+    /// </summary>
     protected abstract void UnlistenForInput();
 
 }

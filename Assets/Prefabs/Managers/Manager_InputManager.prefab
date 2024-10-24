@@ -75,7 +75,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2018841906673442026}
         m_TargetAssemblyTypeName: Manager_InputManager, Assembly-CSharp
-        m_MethodName: ChangeDirection
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2018841906673442026}
         m_TargetAssemblyTypeName: Manager_InputManager, Assembly-CSharp
-        m_MethodName: Scroll
+        m_MethodName: MouseScroll
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -123,7 +123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2018841906673442026}
         m_TargetAssemblyTypeName: Manager_InputManager, Assembly-CSharp
-        m_MethodName: Number
+        m_MethodName: NumberPressed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -155,7 +155,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2018841906673442026}
         m_TargetAssemblyTypeName: Manager_InputManager, Assembly-CSharp
-        m_MethodName: Spint
+        m_MethodName: Sprint
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

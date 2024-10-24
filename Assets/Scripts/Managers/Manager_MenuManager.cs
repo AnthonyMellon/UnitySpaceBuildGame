@@ -28,27 +28,23 @@ public class Manager_MenuManager : MonoBehaviour
 
     private void OnBuildMenuLoaded(Scene scene)
     {
-        if(_buildMenu != null)
+        if(_buildMenu != null) //If the build menu object has already been cached
         {
-            Debug.Log("Quick load");
-
             _buildMenu.gameObject.SetActive(true);
         }
-        else
+        else //Find the build menu object and cache it
         {
-            Debug.Log("slow load");
-
             GameObject[] rootObjects = scene.GetRootGameObjects();
             for (int i = 0; i < rootObjects.Length; i++)
             {
-                if (_buildMenu == null)
+                if (_buildMenu == null) //Cache the first (should be the only) build menu found
                 {
                     rootObjects[i].TryGetComponent(out _buildMenu);
                 }
             }
         }
 
-        if (_buildMenu == null)
+        if (_buildMenu == null) //uh oh, no build menu
         {
             Debug.LogWarning("Failed to load build menu!");
         }

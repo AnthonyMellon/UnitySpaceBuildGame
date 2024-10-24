@@ -38,7 +38,7 @@ public class Hotbar : MonoBehaviour
     /// <summary>
     /// Scroll to next or previous slot
     /// </summary>
-    /// <param name="direction">negative for prevois slots, positive for next slots</param>
+    /// <param name="direction">negative for previous slots, positive for next slots</param>
     public void ScrollSelectedSlot(int direction)
     {
         if (direction == 0) return;

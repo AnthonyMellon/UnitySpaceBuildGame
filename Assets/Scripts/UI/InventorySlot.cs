@@ -38,6 +38,10 @@ public class InventorySlot : MonoBehaviour
         UpdateNameTag();
     }
 
+    /// <summary>
+    /// Enable / disable the highlight
+    /// </summary>
+    /// <param name="enable">enable highlight?</param>
     public void Highlight(bool enable)
     {
         if (enable) EnableHighlight();
@@ -80,10 +84,12 @@ public class InventorySlot : MonoBehaviour
 
         string newName = null;
 
+        //Ensure there is data to read from
         if(_itemData != null)
         {
             newName = _itemData.GetName();
 
+            //IF the data has no name, fallback to the default
             if (string.IsNullOrEmpty(newName)) newName = _inventoryConstants.GetDefaultItemName();
         }
 
