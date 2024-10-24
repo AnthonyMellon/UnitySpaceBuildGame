@@ -3,10 +3,10 @@ using Zenject;
 
 public abstract class InputReviever : MonoBehaviour
 {
-    protected Manager_InputManager _input;
+    protected Input_InputProvider _input;
 
     [Inject]
-    private void Initialize(Manager_InputManager input)
+    private void Initialize(Input_InputProvider input)
     {
         _input = input;
     }

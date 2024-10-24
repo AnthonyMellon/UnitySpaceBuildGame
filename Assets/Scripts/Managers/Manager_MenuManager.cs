@@ -9,13 +9,13 @@ using Zenject;
 public class Manager_MenuManager : MonoBehaviour
 {
     private Manager_SceneManager _sceneManager;
-    private Manager_InputManager _InputManager;
+    private Input_InputProvider _InputManager;
 
     //Menus
     private Menu_BuildMenu _buildMenu;
 
     [Inject]
-    private void Initailize(Manager_SceneManager sceneManager, Manager_InputManager inputManager)
+    private void Initailize(Manager_SceneManager sceneManager, Input_InputProvider inputManager)
     {
         _sceneManager = sceneManager;
         _InputManager = inputManager;
@@ -64,11 +64,11 @@ public class Manager_MenuManager : MonoBehaviour
 
     private void MenuOpened()
     {
-        _InputManager.SwitchInput("Menus");
+        _InputManager.SetInputMode(Input_InputProvider.InputModes.Menus);
     }
 
     private void MenuClosed()
     {
-        _InputManager.SwitchInput("Player");
+        _InputManager.SetInputMode(Input_InputProvider.InputModes.Game);
     }
 }

@@ -4,10 +4,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using Zenject;
 
-public class Manager_InputManager : MonoBehaviour
+public class Input_InputProvider : MonoBehaviour
 {
-   [SerializeField] private PlayerInput _pInput;
+    [SerializeField] private PlayerInput _pInput;
 
     #region Event Decleration
     public delegate void MoveHandler (Vector3 direction);
@@ -37,6 +38,12 @@ public class Manager_InputManager : MonoBehaviour
     public delegate void CloseMenuHandler();
     public event CloseMenuHandler OnCloseMenu;
     #endregion
+
+    public enum InputModes
+    {
+        Game,
+        Menus
+    }
 
     #region Player
     public void Move(InputAction.CallbackContext context)
@@ -113,8 +120,32 @@ public class Manager_InputManager : MonoBehaviour
     }
     #endregion
 
+    /// <summary>
+    /// Switch the input mode
+    /// </summary>
+    /// <param name="mode">Input mode to switch to</param>
+    public void SetInputMode(InputModes mode)
+    {
+        switch(mode)
+        {
+            case InputModes.Game:
+                SwitchInput("Player");
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                break;
+            case InputModes.Menus:
+                SwitchInput("Menus");
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                break;
+        }
+    }
 
-    public void SwitchInput(string InputName) //swap this to a callback?
+    /// <summary>
+    /// Switch what input map is being lsitened to
+    /// </summary>
+    /// <param name="InputName">Name of the map to switch to</param>
+    private void SwitchInput(string InputName)
     {
         _pInput.SwitchCurrentActionMap(InputName);
     }

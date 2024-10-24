@@ -9,15 +9,6 @@ public class PlayerCameraManager : InputReviever
 
     private float _currentPitch = 0f;
 
-    private new void OnEnable()
-    {
-        base.OnEnable();
-
-        //Temp here - move to some cursor manager class down the line
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
-
     protected override void ListenForInput()
     {
         _input.OnVerticalMouseMove += PitchCamera;

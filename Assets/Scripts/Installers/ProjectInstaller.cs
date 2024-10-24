@@ -13,7 +13,7 @@ public class ProjectInstaller : MonoInstaller
     [Header("Managers")]
     [SerializeField] private Manager_SceneManager _sceneManager;
     [SerializeField] private Manager_MenuManager _menuManager;
-    [SerializeField] private Manager_InputManager _inputManager;
+    [SerializeField] private Input_InputProvider _inputManager;
 
     public override void InstallBindings()
     {
@@ -23,7 +23,7 @@ public class ProjectInstaller : MonoInstaller
         //Managers
         Container.Bind<Manager_SceneManager>().FromComponentInNewPrefab(_sceneManager).AsSingle();
         Container.Bind<Manager_MenuManager>().FromComponentInNewPrefab(_menuManager).AsSingle();
-        Container.Bind<Manager_InputManager>().FromComponentInNewPrefab(_inputManager).AsSingle();
+        Container.Bind<Input_InputProvider>().FromComponentInNewPrefab(_inputManager).AsSingle();
 
         //Factories
         Container.BindFactory<InventoryItem, InventorySlot, InventorySlot.Factory>().FromComponentInNewPrefab(_buildMenuSlot).AsSingle();
