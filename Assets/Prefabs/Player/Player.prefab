@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 3078495364362035587}
   - component: {fileID: 8599201696530025974}
   - component: {fileID: 6959950112217481380}
-  - component: {fileID: 2081752322533758822}
   - component: {fileID: 3984120602424647472}
   m_Layer: 0
   m_Name: Player
@@ -169,18 +168,6 @@ MonoBehaviour:
   _minCameraPitch: -67.5
   _maxCameraPitch: 67.5
   _pitchSpeed: 0.1
---- !u!114 &2081752322533758822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3420480507122964358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636fa05e59f4ed5498484d5c382934d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &3984120602424647472
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using Zenject;
 
 public class ProjectInstaller : MonoInstaller
 {
-    [SerializeField] private InventorySlot _buildMenuSlot;
+    [SerializeField] private BuildMenuSlot _buildMenuSlot;
 
     //Constants
     [Header("Constants")]

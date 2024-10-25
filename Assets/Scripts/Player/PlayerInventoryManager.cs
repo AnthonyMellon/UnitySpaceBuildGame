@@ -5,19 +5,21 @@ using Zenject;
 
 public class PlayerInventoryManager : InputReviever
 {
+    //NOTE - all of this could be moved onto the hotbar
+
     [SerializeField] private Hotbar _hotbar;
 
     #region Event Subscription
     protected override void ListenForInput()
     {
         _input.OnVerticalScroll += OnScroll;
-        _input.OnNumberPressed += OnNumberPressed;
+        _input.OnPlayerNumberPressed += OnNumberPressed;
     }
 
     protected override void UnlistenForInput()
     {
         _input.OnVerticalScroll -= OnScroll;
-        _input.OnNumberPressed -= OnNumberPressed;
+        _input.OnPlayerNumberPressed -= OnNumberPressed;
     }
     #endregion
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +5,7 @@ using Zenject;
 
 public class InventorySlot : MonoBehaviour
 {
+    //Serialized
     [SerializeField] private Image _backgroundImage;
     [SerializeField] private Color _highlightColor;
     [SerializeField] private Color _defaultColor;
@@ -14,7 +13,13 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private TMP_Text _nameTag;
     [SerializeField] private InventoryItem _itemData;
 
+    //Injected
     private InventoryConstants _inventoryConstants;
+
+    //Events
+    public delegate void SlotSelectChangeHandler(bool selected, InventorySlot slot);
+    public SlotSelectChangeHandler OnSlotSelectChanged;
+
 
     [Inject]
     private void Initialise([InjectOptional]InventoryItem data, InventoryConstants inventoryConstants)
@@ -30,6 +35,7 @@ public class InventorySlot : MonoBehaviour
     private void OnEnable()
     {
         OnDataChange();
+        Select(false);
     }
 
     private void OnDataChange()
@@ -39,13 +45,21 @@ public class InventorySlot : MonoBehaviour
     }
 
     /// <summary>
-    /// Enable / disable the highlight
+    /// Toggle weather the slot is in a selected state
     /// </summary>
-    /// <param name="enable">enable highlight?</param>
-    public void Highlight(bool enable)
+    /// <param name="selected">Is this slot selected?</param>
+    public void Select(bool selected)
     {
-        if (enable) EnableHighlight();
-        else DisableHighlight();
+        if (selected)
+        {
+            OnSlotSelectChanged?.Invoke(true, this);
+            EnableHighlight();
+        }
+        else
+        {
+            OnSlotSelectChanged?.Invoke(false, this);
+            DisableHighlight();
+        }
     }
 
     private void EnableHighlight()
@@ -96,8 +110,24 @@ public class InventorySlot : MonoBehaviour
         _nameTag.text = newName;
     }
 
+    /// <summary>
+    /// Update data for this slot
+    /// </summary>
+    /// <param name="data">The new data</param>
+    public void SetData(InventoryItem data)
+    {
+        _itemData = data;
+        OnDataChange();
+    }
+
+    public InventoryItem GetData()
+    {
+        return _itemData;
+    }
+
     public void Destroy()
     {
+        OnSlotSelectChanged = null;
         Destroy(gameObject);
     }
 

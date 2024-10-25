@@ -20,8 +20,8 @@ public class Input_InputProvider : MonoBehaviour
     public delegate void VerticalScrollHandler(int direction);
     public event VerticalScrollHandler OnVerticalScroll;
 
-    public delegate void NumberPressedHandler(int num);
-    public event NumberPressedHandler OnNumberPressed;
+    public delegate void PlayerNumberPressedHandler(int num);
+    public event PlayerNumberPressedHandler OnPlayerNumberPressed;
 
     public delegate void HorizontalMouseMoveHandler(float delta);
     public event HorizontalMouseMoveHandler OnHorizontalMouseMove;
@@ -37,6 +37,9 @@ public class Input_InputProvider : MonoBehaviour
 
     public delegate void CloseMenuHandler();
     public event CloseMenuHandler OnCloseMenu;
+
+    public delegate void MenuNumberPressedHandler(int num);
+    public event MenuNumberPressedHandler OnMenuNumberPressed;
     #endregion
 
     public enum InputModes
@@ -65,6 +68,16 @@ public class Input_InputProvider : MonoBehaviour
         bool toggle = context.ReadValueAsButton();
         OnSprintToggle?.Invoke(toggle);
     }
+
+    public void PlayerNumberPressed(InputAction.CallbackContext context)
+    {
+        int num = (int)context.ReadValue<float>();
+
+        if (context.phase == InputActionPhase.Started) //Only trigger on initial press
+        {
+            OnPlayerNumberPressed?.Invoke(num);
+        }
+    }
     #endregion
 
     #region Menus
@@ -84,6 +97,16 @@ public class Input_InputProvider : MonoBehaviour
             OnOpenBuildMenu?.Invoke();
         }
     }
+
+    public void MenuNumberPressed(InputAction.CallbackContext context)
+    {
+        int num = (int)context.ReadValue<float>();
+
+        if (context.phase == InputActionPhase.Started) //Only trigger on initial press
+        {
+            OnMenuNumberPressed?.Invoke(num);
+        }
+    }
     #endregion
 
     #region Generic
@@ -98,16 +121,6 @@ public class Input_InputProvider : MonoBehaviour
             OnVerticalScroll?.Invoke(verticalDirection);
 
             //Horizontal scroll can go here if ever needed
-        }
-    }
-
-    public void NumberPressed(InputAction.CallbackContext context)
-    {
-        int num = (int)context.ReadValue<float>();
-
-        if (context.phase == InputActionPhase.Started) //Only trigger on initial press
-        {
-            OnNumberPressed?.Invoke(num);
         }
     }
 

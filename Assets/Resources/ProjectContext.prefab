@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30393efefdef11b429b3b1329541d834, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildMenuSlot: {fileID: 2205494359501167362, guid: b2de2e0fedb478f40abac1775113e32a, type: 3}
+  _inventorySlot: {fileID: 0}
+  _buildMenuSlot: {fileID: 5409697261605421369, guid: b2de2e0fedb478f40abac1775113e32a, type: 3}
   _inventoryConstants: {fileID: 7813220287101065498, guid: 85a70bde5143d1f4b84e1e8f15815ad3, type: 3}
   _sceneManager: {fileID: 6985603456921539280, guid: b79f9b24d8de1cd44979f3d454f7e7a5, type: 3}
   _menuManager: {fileID: 3490039135982287744, guid: 6e70eddb753f651468bec6f89f48955f, type: 3}

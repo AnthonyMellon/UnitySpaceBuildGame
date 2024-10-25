@@ -27,8 +27,6 @@ public class Manager_SceneManager : MonoBehaviour
             //Start loading the scene
             StartCoroutine(LoadSceneEnum(sceneName, onLoadComplete));
         }
-
-
     }
 
     /// <summary>

@@ -1,18 +1,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
-public class Hotbar : MonoBehaviour
+public class Hotbar : InputReviever
 {
     [SerializeField] private GameObject _slotsContainer;
     private List<InventorySlot> _slots;
     private int _selectedSlotIndex = 0;
 
-    private void OnEnable()
+    private Manager_MenuManager _menuManager;
+
+    [Inject]
+    private void Initialize(Manager_MenuManager menuManager)
     {
+        _menuManager = menuManager;
+    }
+
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+
         UpdateAllSlotHighlights();
     }
-    
+
+    protected override void ListenForInput()
+    {
+        _input.OnOpenBuildMenu += OpenBuildMenu;
+        _input.OnCloseMenu += CloseBuildMenu;
+    }
+
+    protected override void UnlistenForInput()
+    {
+        _input.OnOpenBuildMenu -= OpenBuildMenu;
+        _input.OnCloseMenu += CloseBuildMenu;
+    }
+
     /// <summary>
     /// Gets and stores all slots
     /// </summary>
@@ -31,7 +54,7 @@ public class Hotbar : MonoBehaviour
 
         for(int i = 0; i < _slots.Count; i++)
         {
-            _slots[i].Highlight(i == _selectedSlotIndex);
+            _slots[i].Select(i == _selectedSlotIndex);
         }
     }
 
@@ -45,13 +68,13 @@ public class Hotbar : MonoBehaviour
         if (_slots == null) GetAllSlots();
         if (_slots.Count == 0) return;
 
-        int newSlot = (_selectedSlotIndex + direction);
+        int newSlotIndex = (_selectedSlotIndex + direction);
 
         //Wrap slot index
-        if (newSlot < 0) newSlot = _slots.Count - 1;
-        else if (newSlot >= _slots.Count) newSlot = 0;
+        if (newSlotIndex < 0) newSlotIndex = _slots.Count - 1;
+        else if (newSlotIndex >= _slots.Count) newSlotIndex = 0;
 
-        SetSelectedSlot(newSlot);
+        SetSelectedSlot(newSlotIndex);
     }
 
     /// <summary>
@@ -60,12 +83,11 @@ public class Hotbar : MonoBehaviour
     /// <param name="newSlot">Slot index to select</param>
     public void SetSelectedSlot(int newSlot)
     {
-        //Update highlights
-        HighlightSlot(_selectedSlotIndex, false);
-        HighlightSlot(newSlot, true);
+        //Update slots selection status
+        _slots[_selectedSlotIndex].Select(false);
+        _slots[newSlot].Select(true);
 
         _selectedSlotIndex = newSlot;
-
     }
 
     /// <summary>
@@ -77,7 +99,7 @@ public class Hotbar : MonoBehaviour
     {
         if (!IsValidSlotIndex(slotIndex)) return;
 
-        _slots[slotIndex].Highlight(highlight);
+        _slots[slotIndex].Select(highlight);
     }
 
     /// <summary>
@@ -92,6 +114,28 @@ public class Hotbar : MonoBehaviour
         if (slotIndex >= _slots.Count) return false;
 
         return true;
+    }
+
+    /// <summary>
+    /// Set a slots data
+    /// </summary>
+    /// <param name="slotNum">The slot to set data for</param>
+    /// <param name="data">The data the slot should accept</param>
+    public void SetSlotData(int slotNum, InventoryItem data)
+    {
+        if (slotNum < 0 || slotNum >= _slots.Count) return; //Invalid slot num
+
+        _slots[slotNum].SetData(data);
+    }
+
+    private void OpenBuildMenu()
+    {
+        _menuManager.OpenBuildMenu(this);
+    }
+
+    private void CloseBuildMenu()
+    {
+        _menuManager.CloseBuildMenu();
     }
 
 }

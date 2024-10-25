@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class Menu_BuildMenu : Menu_MenuBase
+public class Menu_BuildMenu : InputReviever
 {    
     //Serialized
     [SerializeField] private RectTransform _slotContainer;
@@ -14,6 +14,8 @@ public class Menu_BuildMenu : Menu_MenuBase
 
     //Other
     private List<InventorySlot> _slots = new List<InventorySlot>();
+    private InventorySlot _selectedSlot;
+    private Hotbar _owner;
 
     [Inject]
     private void Initialize(InventorySlot.Factory inventorySlotFactory)
@@ -21,14 +23,28 @@ public class Menu_BuildMenu : Menu_MenuBase
         _inventorySlotFactory = inventorySlotFactory;
     }
 
-    protected override void OpenMenu()
+    protected override void ListenForInput()
     {
+        _input.OnMenuNumberPressed += OnNumberPressed;
+    }
+    protected override void UnlistenForInput()
+    {
+        _input.OnMenuNumberPressed -= OnNumberPressed;
+    }
+
+    public void OpenMenu(Hotbar owner)
+    {
+        gameObject.SetActive(true);
+
+        _owner = owner;
         CreateSlotsFor(_menuItems);
     }
 
-    protected override void CloseMenu()
+    public void CloseMenu()
     {
         DestroySlots();
+
+        gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -41,6 +57,7 @@ public class Menu_BuildMenu : Menu_MenuBase
         {
             InventorySlot slot = _inventorySlotFactory.Create(inventoryItems[i]);
             slot.transform.SetParent(_slotContainer, false);
+            slot.OnSlotSelectChanged += OnSlotSelectChanged;
             _slots.Add(slot);
         }
     }
@@ -55,5 +72,25 @@ public class Menu_BuildMenu : Menu_MenuBase
             _slots[i].Destroy();
         }
         _slots.Clear();
+    }
+
+    private void OnSlotSelectChanged(bool selected, InventorySlot slot)
+    {
+        if (selected) _selectedSlot = slot;
+        else _selectedSlot = null;
+    }
+
+    private void OnNumberPressed(int num)
+    {
+        int slotIndex = num - 1;
+        SetHotbarSlotDataToSelectedSlotData(slotIndex);
+    }
+
+    private void SetHotbarSlotDataToSelectedSlotData(int slotIndex)
+    {
+        if (_owner == null) return;
+
+        InventoryItem data = _selectedSlot.GetData();
+        _owner.SetSlotData(slotIndex, data);
     }
 }

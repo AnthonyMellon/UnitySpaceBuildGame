@@ -21,19 +21,15 @@ public class Manager_MenuManager : MonoBehaviour
         _InputManager = inputManager;
     }
 
-    public void OpenBuildMenu()
+    public void OpenBuildMenu(Hotbar owner)
     {
-        _sceneManager.LoadScene(SceneConstants.Scenes.BuildMenu, OnBuildMenuLoaded);
+        _sceneManager.LoadScene(SceneConstants.Scenes.BuildMenu, (Scene scene) => { OnBuildMenuLoaded(scene, owner); });
     }
 
-    private void OnBuildMenuLoaded(Scene scene)
+    private void OnBuildMenuLoaded(Scene scene, Hotbar owner)
     {
-        if(_buildMenu != null) //If the build menu object has already been cached
-        {
-            _buildMenu.gameObject.SetActive(true);
-        }
-        else //Find the build menu object and cache it
-        {
+        if(_buildMenu == null) //If the build menu has not already been loaded, load and cache it
+        {        
             GameObject[] rootObjects = scene.GetRootGameObjects();
             for (int i = 0; i < rootObjects.Length; i++)
             {
@@ -50,6 +46,7 @@ public class Manager_MenuManager : MonoBehaviour
         }
         else
         {
+            _buildMenu.OpenMenu(owner);
             MenuOpened();
         }
     }
@@ -58,7 +55,7 @@ public class Manager_MenuManager : MonoBehaviour
     {
         if (_buildMenu == null) return;
 
-        _buildMenu.gameObject.SetActive(false);
+        _buildMenu.CloseMenu();
         MenuClosed();
     }
 
