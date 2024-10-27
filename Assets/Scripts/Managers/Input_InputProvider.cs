@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.LowLevel;
-using Zenject;
 
 public class Input_InputProvider : MonoBehaviour
 {
@@ -40,6 +39,9 @@ public class Input_InputProvider : MonoBehaviour
 
     public delegate void MenuNumberPressedHandler(int num);
     public event MenuNumberPressedHandler OnMenuNumberPressed;
+
+    public delegate void MenuMouseMoveHandler(Vector2 mousePos);
+    public event MenuMouseMoveHandler OnMenuMouseMove;
     #endregion
 
     public enum InputModes
@@ -107,7 +109,14 @@ public class Input_InputProvider : MonoBehaviour
             OnMenuNumberPressed?.Invoke(num);
         }
     }
+
+    public void MenuMouseMove(InputAction.CallbackContext context)
+    {
+        Vector2 mousePos = context.ReadValue<Vector2>();
+        OnMenuMouseMove?.Invoke(mousePos);
+    }
     #endregion
+
 
     #region Generic
     public void MouseScroll(InputAction.CallbackContext context)
@@ -148,7 +157,7 @@ public class Input_InputProvider : MonoBehaviour
                 break;
             case InputModes.Menus:
                 SwitchInput("Menus");
-                Cursor.lockState = CursorLockMode.None;
+                Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
                 break;
         }

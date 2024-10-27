@@ -1823,6 +1823,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1725781750114069869, guid: 605117bcf8cb27e4c98d2a7fb2d49ac0, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 2081752322533758822, guid: 605117bcf8cb27e4c98d2a7fb2d49ac0, type: 3}
       propertyPath: _input
       value: 
