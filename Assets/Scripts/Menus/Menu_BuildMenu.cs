@@ -89,6 +89,7 @@ public class Menu_BuildMenu : InputReviever
     private void SetHotbarSlotDataToSelectedSlotData(int slotIndex)
     {
         if (_owner == null) return;
+        if(_selectedSlot == null) return;
 
         InventoryItem data = _selectedSlot.GetData();
         _owner.SetSlotData(slotIndex, data);
