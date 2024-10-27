@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
+using UnityEditor.PackageManager.UI;
 using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -42,6 +44,12 @@ public class Input_InputProvider : MonoBehaviour
 
     public delegate void MenuMouseMoveHandler(Vector2 mousePos);
     public event MenuMouseMoveHandler OnMenuMouseMove;
+
+    public delegate void PlayerInteractHandler();
+    public event PlayerInteractHandler OnPlayerInteract;
+
+    public delegate void PlayerScrollInteractionDistanceHandler(float scroll);
+    public event PlayerScrollInteractionDistanceHandler OnPlayerScrollInteractionDistance;
     #endregion
 
     public enum InputModes
@@ -79,6 +87,20 @@ public class Input_InputProvider : MonoBehaviour
         {
             OnPlayerNumberPressed?.Invoke(num);
         }
+    }
+
+    public void PlayerInteract(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            OnPlayerInteract?.Invoke();
+        }
+    }
+
+    public void ScrollInteractionDistance(InputAction.CallbackContext context)
+    {
+        float scroll = context.ReadValue<Vector2>().y;
+        OnPlayerScrollInteractionDistance?.Invoke(scroll);
     }
     #endregion
 
